@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <title>
+      ARRAY
+    </title>
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+
+  <body>
+    <h1>This is array testing</h1>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const newArray = [
+        "Apple",
+        "Fruits",
+        "Vegies",
+        "Berry",
+        "India",
+        "Isreal",
+        "USA",
+        "France",
+        "Russia",
+      ];
+
+      class ArrayTest extends React.Component {
+        componentDidMount() {
+          console.log("mounted");
+        }
+
+        render() {
+          console.log("rendered");
+          return (
+            <React.Fragment>
+              <h2>
+                <i>ARRAY</i>
+              </h2>
+              <PassArray array={newArray} />
+            </React.Fragment>
+          );
+        }
+      }
+
+      const PassArray = (props) => {
+        {
+          const elements = props.array.map((i, j) => {
+            return (
+              <React.Fragment>
+                <ul>
+                  <li key={j}>{i}</li>
+                </ul>
+              </React.Fragment>
+            );
+          });
+
+          return <li>{elements}</li>;
+        }
+      };
+
+      class Counter extends React.Component {
+        state = {
+          count: 0,
+          imgUrl: "https://picsum.photos/200",
+        };
+
+        render() {
+          console.log("rendered");
+          return (
+            <React.Fragment>
+              <img src={this.state.imgUrl} />
+              <h1>Current counter is:{this.state.count}</h1>
+              <button onClick={this.Increase}>Increment</button>
+              <button onClick={this.Decrease}>Decrement</button>
+            </React.Fragment>
+          );
+        }
+
+        Increase = () => {
+          console.log("Incremented");
+          const { count } = this.state;
+
+          this.setState({
+            count: count + 1,
+          });
+        };
+
+        Decrease = () => {
+          const { count } = this.state;
+          this.setState({
+            count: count - 1,
+          });
+        };
+      }
+      ReactDOM.render(
+        <div>
+          <ArrayTest />,
+          <Counter />
+        </div>,
+        document.getElementById("root")
+      );
+    </script>
+  </body>
+</html>
